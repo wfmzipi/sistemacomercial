@@ -1,57 +1,37 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import com.wm.sistemacomercial.model.entities.enums.ETipoRegistro;
 
-import model.entities.enums.ETipoRegistro;
 
-@Entity(name="Cliente")
 public class Cliente implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_CLIENTE")
+
 	private Long idcliente;
 	
-	@Column(name="NOME")
+
 	private String nome;
 	
-	@Column(name="REGISTRO")
+
 	private String registro;
 	
-	@Column(name="TIPO_REGISTRO")
-	@Enumerated(EnumType.STRING)
+
 	private ETipoRegistro tiporegistro;
 	
-	@Column(name="EMAIL")
+
 	private String email;
 	
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="ENDERECO_CLIENTE",
-              joinColumns={@JoinColumn(name="ID_CLIENTE",referencedColumnName="ID_CLIENTE")},
-              inverseJoinColumns={@JoinColumn(name="ID_ENDERECO", referencedColumnName="ID_ENDERECO")})
-    private List<Endereco> endereco;
+
+   // private List<Endereco> endereco;
 	
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="TELEFONE_CLIENTE",
-              joinColumns={@JoinColumn(name="ID_CLIENTE",referencedColumnName="ID_CLIENTE")},
-              inverseJoinColumns={@JoinColumn(name="ID_TELEFONE", referencedColumnName="ID_TELEFONE")})
-	private List<Telefone> telefone;
+
+	//private List<Telefone> telefone;
 	
 	public Cliente () {};
 	
@@ -106,13 +86,13 @@ public class Cliente implements Serializable{
 
 	
 
-	public List<Endereco> getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
-	}
+//	public List<Endereco> getEndereco() {
+//		return endereco;
+//	}
+//
+//	public void setEndereco(List<Endereco> endereco) {
+//		this.endereco = endereco;
+//	}
 
 	public void setTiporegistro(ETipoRegistro tiporegistro) {
 		this.tiporegistro = tiporegistro;

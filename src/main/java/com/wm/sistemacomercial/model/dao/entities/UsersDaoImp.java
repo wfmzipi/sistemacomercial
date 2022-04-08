@@ -5,9 +5,9 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import exception.CustomException;
-import model.dao.jpa.JpaDao;
-import model.entities.Users;
+import com.wm.sistemacomercial.model.dao.jpa.JpaDao;
+import com.wm.sistemacomercial.model.entities.Users;
+import com.wm.sistemacomercial.view.exception.CustomException;
 
 public class UsersDaoImp extends JpaDao<Users> implements UsersDao {
 

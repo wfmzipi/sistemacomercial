@@ -2,9 +2,9 @@ package model.dao.entities;
 
 import java.util.List;
 
-import exception.CustomException;
-import model.dao.jpa.JpaDao;
-import model.entities.Cliente;
+import com.wm.sistemacomercial.model.dao.jpa.JpaDao;
+import com.wm.sistemacomercial.model.entities.Cliente;
+import com.wm.sistemacomercial.view.exception.CustomException;
 
 public class ClienteDaoImp extends JpaDao<Cliente> implements ClienteDao{
 

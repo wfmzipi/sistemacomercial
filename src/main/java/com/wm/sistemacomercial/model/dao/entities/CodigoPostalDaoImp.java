@@ -2,10 +2,9 @@ package model.dao.entities;
 
 import java.util.List;
 
-import exception.CustomException;
-import model.dao.jpa.JpaDao;
-import model.entities.Cliente;
-import model.entities.CodigoPostal;
+import com.wm.sistemacomercial.model.dao.jpa.JpaDao;
+import com.wm.sistemacomercial.model.entities.CodigoPostal;
+import com.wm.sistemacomercial.view.exception.CustomException;
 
 public class CodigoPostalDaoImp extends JpaDao<CodigoPostal> implements CodigoPostalDao{
 
