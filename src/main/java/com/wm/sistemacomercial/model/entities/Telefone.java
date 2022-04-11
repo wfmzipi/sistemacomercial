@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 
@@ -12,9 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 
-import model.entities.enums.ETipoTelefone;
+import com.wm.sistemacomercial.model.entities.enums.ETipoTelefone;
 
-@Entity(name = "TELEFONE")
+@Entity(name = "Telefone")
 public class Telefone implements Serializable{
 
 	@Id

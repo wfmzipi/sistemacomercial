@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,10 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import model.entities.Produto;
-import model.entities.Servico;
-
-//@Entity(name = "ItemOrdemServico")
+@Entity(name = "Item_Ordem_Servic")
 public class ItemOrdemServico implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -25,8 +24,8 @@ public class ItemOrdemServico implements Serializable{
 	private Integer quantidade;
 	private OrdemServico ordemServico;
 
-	private List<Produto> produtos = new ArrayList<>();
-	private List<Servico> servico = new ArrayList<>();
+//	private List<Produto> produtos = new ArrayList<>();
+//	private List<Servico> servico = new ArrayList<>();
 
 	public ItemOrdemServico() {
 

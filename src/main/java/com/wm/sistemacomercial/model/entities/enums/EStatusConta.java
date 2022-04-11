@@ -1,6 +1,6 @@
 package com.wm.sistemacomercial.model.entities.enums;
 
-public enum StatusConta {
+public enum EStatusConta {
 
 	ABERTO,PAGO,VENCIDO
 }

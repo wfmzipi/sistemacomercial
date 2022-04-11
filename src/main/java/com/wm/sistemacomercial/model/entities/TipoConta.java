@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 
@@ -8,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="TIPOCONTA")
+@Entity(name = "Tipo_Conta")
 public class TipoConta implements Serializable{
 
 	@Id

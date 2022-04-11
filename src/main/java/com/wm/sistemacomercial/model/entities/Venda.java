@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,9 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import model.entities.enums.EFormaPagamento;
+import com.wm.sistemacomercial.model.entities.enums.EFormaPagamento;
 
-@Entity(name="Venda")
+@Entity(name = "Venda")
 public class Venda implements Serializable{
 
 private static final long serialVersionUID = 1L;

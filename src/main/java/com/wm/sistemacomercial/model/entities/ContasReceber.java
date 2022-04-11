@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,11 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import model.entities.enums.StatusConta;
+import com.wm.sistemacomercial.model.entities.enums.EStatusConta;
 
-@Entity(name="Contas_Receber")
+@Entity(name = "Contas_Receber")
 public class ContasReceber implements Serializable {
-	
+ 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -31,11 +33,11 @@ public class ContasReceber implements Serializable {
 	private Number ValorTotal;
 	
 	@Column(name = "STATUS")
-	private StatusConta Status;
+	private EStatusConta Status;
 
 	public ContasReceber() {};
 	
-	public ContasReceber(Date dataInclusao, Date dataRecebimento, Number valorTotal, StatusConta status) {
+	public ContasReceber(Date dataInclusao, Date dataRecebimento, Number valorTotal, EStatusConta status) {
 		DataInclusao = dataInclusao;
 		DataRecebimento = dataRecebimento;
 		ValorTotal = valorTotal;
@@ -74,11 +76,11 @@ public class ContasReceber implements Serializable {
 		ValorTotal = valorTotal;
 	}
 
-	public StatusConta getStatus() {
+	public EStatusConta getStatus() {
 		return Status;
 	}
 
-	public void setStatus(StatusConta status) {
+	public void setStatus(EStatusConta status) {
 		Status = status;
 	}
 

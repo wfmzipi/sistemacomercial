@@ -4,16 +4,24 @@ package com.wm.sistemacomercial.model.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.wm.sistemacomercial.model.entities.enums.ETipoRegistro;
 
-
+@Entity(name = "Cliente")
 public class Cliente implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
 	
-
-	private Long idcliente;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id_cliente;
 	
 
 	private String nome;
@@ -21,7 +29,7 @@ public class Cliente implements Serializable{
 
 	private String registro;
 	
-
+	@Enumerated(EnumType.STRING)
 	private ETipoRegistro tiporegistro;
 	
 
@@ -43,11 +51,11 @@ public class Cliente implements Serializable{
 	}
 
 	public Long getId_cliente() {
-		return idcliente;
+		return id_cliente;
 	}
 
 	public void setId_cliente(Long id_cliente) {
-		this.idcliente = id_cliente;
+		this.id_cliente = id_cliente;
 	}
 
 	public String getNome() {
@@ -100,7 +108,7 @@ public class Cliente implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Cliente [id_cliente=" + idcliente + ", nome=" + nome + ", registro=" + registro + ", tipo_registro="
+		return "Cliente [id_cliente=" + id_cliente + ", nome=" + nome + ", registro=" + registro + ", tipo_registro="
 				+ tiporegistro + ", email=" + email + "]";
 	}
 

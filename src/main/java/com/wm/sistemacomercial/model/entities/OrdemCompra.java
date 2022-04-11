@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,10 +18,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import model.entities.enums.EEstatus;
-import model.entities.enums.EFormaPagamento;
+import com.wm.sistemacomercial.model.entities.enums.EEstatus;
+import com.wm.sistemacomercial.model.entities.enums.EFormaPagamento;
 
-@Entity(name="ORDEM_COMPRA")
+@Entity(name = "Ordem_Compra")
 public class OrdemCompra implements Serializable{
 
 	private static final long serialVersionUID = 1L;

@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,9 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import model.entities.enums.ETipOperacao;
+import com.wm.sistemacomercial.model.entities.enums.ETipOperacao;
 
-@Entity(name="FLUXOCAIXA")
+@Entity(name = "Fluxo_Caixa")
 public class FluxoCaixa implements Serializable{
 
 	private static final long serialVersionUID = 1L;

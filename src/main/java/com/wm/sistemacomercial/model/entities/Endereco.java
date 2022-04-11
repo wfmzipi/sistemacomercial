@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 
@@ -14,9 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 
-import model.entities.enums.ETipoEndereco;
+import com.wm.sistemacomercial.model.entities.enums.ETipoEndereco;
 
-@Entity(name = "ENDERECO")
+@Entity(name = "Endereco")
 public class Endereco implements Serializable {
 
 	@Id

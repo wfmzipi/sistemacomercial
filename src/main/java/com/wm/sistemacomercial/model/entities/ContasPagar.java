@@ -1,4 +1,5 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,9 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import model.entities.enums.StatusConta;
+import com.wm.sistemacomercial.model.entities.enums.EStatusConta;
 
-@Entity(name="Contas_Pagar")
+@Entity(name = "Contas_Pagar")
 public class ContasPagar implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -34,7 +35,7 @@ public class ContasPagar implements Serializable {
 	private Date DataVencimento;
 	
 	@Column(name = "STATUS")
-	private StatusConta Status;
+	private EStatusConta Status;
 
 	public Long getIDContaPagar() {
 		return IDContaPagar;
@@ -76,11 +77,11 @@ public class ContasPagar implements Serializable {
 		DataVencimento = dataVencimento;
 	}
 
-	public StatusConta getStatus() {
+	public EStatusConta getStatus() {
 		return Status;
 	}
 
-	public void setStatus(StatusConta status) {
+	public void setStatus(EStatusConta status) {
 		Status = status;
 	}
 

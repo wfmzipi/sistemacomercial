@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,10 +19,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import model.entities.enums.ETipoRegistro;
+import com.wm.sistemacomercial.model.entities.enums.ETipoRegistro;
 
 
-@Entity(name="FORNECEDOR")
+@Entity(name = "Fornecedor")
 public class Fornecedor implements Serializable{
 
 	private static final long serialVersionUID = 1L;

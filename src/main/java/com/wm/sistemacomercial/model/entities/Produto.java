@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
  
-@Entity(name="PRODUTO")
+
+@Entity(name = "Produto")
 public class Produto implements Serializable{
 
 	private static final long serialVersionUID = 1L;

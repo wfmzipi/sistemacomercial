@@ -10,4 +10,8 @@ public class SistemacomercialApplication {
 		SpringApplication.run(SistemacomercialApplication.class, args);
 	}
  
+	
+
+	
+	
 }

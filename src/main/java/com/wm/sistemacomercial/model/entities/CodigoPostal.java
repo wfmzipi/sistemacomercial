@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 
@@ -7,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity(name = "CODIGO_POSTAL")
+@Entity(name = "Codigo_Postal")
 public class CodigoPostal implements Serializable {
 
 	private static final long serialVersionUID = 1L;

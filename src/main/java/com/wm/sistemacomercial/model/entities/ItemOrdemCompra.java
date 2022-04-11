@@ -1,4 +1,6 @@
-package model.entities;
+package com.wm.sistemacomercial.model.entities;
+
+
 
 import java.io.Serializable;
 
@@ -13,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity(name="ITEM_ORDEM_COMPRA")
+@Entity(name = "Item_Ordem_Compra")
 public class ItemOrdemCompra implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
