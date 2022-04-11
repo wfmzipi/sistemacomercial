@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "Usuarios")
-public class Users implements Serializable{
+public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class Users implements Serializable{
 	@Column(name="EMAIL")
 	private String email;
 
-	public Users(Long id, String nome, String login, String password, String email) {
+	public Usuario(Long id, String nome, String login, String password, String email) {
 		this.id = id;
 		this.nome = nome;
 		this.login = login;
@@ -40,7 +40,7 @@ public class Users implements Serializable{
 		this.email = email;
 	}
 	
-	public Users() {}
+	public Usuario() {}
 
 	public String getNome() {
 		return nome;
