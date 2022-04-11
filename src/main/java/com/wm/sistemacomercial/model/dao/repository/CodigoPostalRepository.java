@@ -7,5 +7,7 @@ import com.wm.sistemacomercial.model.entities.CodigoPostal;
 
 @Repository
 public interface CodigoPostalRepository extends JpaRepository<CodigoPostal, Long> {
+	
+	public CodigoPostal findByCep(String CEP);
 
 }
