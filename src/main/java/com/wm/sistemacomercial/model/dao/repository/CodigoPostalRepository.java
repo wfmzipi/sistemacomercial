@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.wm.sistemacomercial.model.entities.CodigoPostal;
 
 @Repository
-public interface CodigoPostalRepository extends JpaRepository<CodigoPostal, Long> {
+public interface CodigoPostalRepository extends JpaRepository<CodigoPostal, String> {
 	
-	public CodigoPostal findByCep(String CEP);
+	public CodigoPostal findByCEP(String CEP);
 
 }

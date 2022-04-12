@@ -7,16 +7,15 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity(name = "Codigo_Postal")
 public class CodigoPostal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+ 
 	@Id
 	@Column(name="CEP")
-	private String Cep;
+	private String CEP;
 	
 	@Column(name="CIDADE")
 	private  String Cidade;
@@ -37,12 +36,12 @@ public class CodigoPostal implements Serializable {
 	public CodigoPostal() {};
 	
 	public CodigoPostal(String cEP) {
-		Cep = cEP;
+		CEP = cEP;
 	}
 	
 	public CodigoPostal(String cEP, String cidade, String bairro, String estado, String longradouro,
 			String complemento) {
-		Cep = cEP;
+		CEP = cEP;
 		Cidade = cidade;
 		Bairro = bairro;
 		Estado = estado;
@@ -50,10 +49,10 @@ public class CodigoPostal implements Serializable {
 		Complemento = complemento;
 	}
 	public String getCEP() {
-		return Cep;
+		return CEP;
 	}
 	public void setCEP(String cEP) {
-		Cep = cEP;
+		CEP = cEP;
 	}
 	public String getCidade() {
 		return Cidade;
@@ -88,7 +87,7 @@ public class CodigoPostal implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CodigoPostal [CEP=" + Cep + ", Cidade=" + Cidade + ", Bairro=" + Bairro + ", Estado=" + Estado
+		return "CodigoPostal [CEP=" + CEP + ", Cidade=" + Cidade + ", Bairro=" + Bairro + ", Estado=" + Estado
 				+ ", Longradouro=" + Longradouro + ", Complemento=" + Complemento + "]";
 	}
 
@@ -96,7 +95,7 @@ public class CodigoPostal implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Cep == null) ? 0 : Cep.hashCode());
+		result = prime * result + ((CEP == null) ? 0 : CEP.hashCode());
 		return result;
 	}
 
@@ -109,10 +108,10 @@ public class CodigoPostal implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		CodigoPostal other = (CodigoPostal) obj;
-		if (Cep == null) {
-			if (other.Cep != null)
+		if (CEP == null) {
+			if (other.CEP != null)
 				return false;
-		} else if (!Cep.equals(other.Cep))
+		} else if (!CEP.equals(other.CEP))
 			return false;
 		return true;
 	}

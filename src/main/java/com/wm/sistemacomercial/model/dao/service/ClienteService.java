@@ -15,15 +15,28 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 	
-	public List<Cliente> findAll(){
-		
+	public List<Cliente> findAll(){		
 		return repository.findAll();
 	}
 	
 	public Cliente findById(long id) {
-		Optional<Cliente> obj = repository.findById(id);
-		
+		Optional<Cliente> obj = repository.findById(id);		
 		return obj.get();
+	}
+	
+	public Cliente findByNome(String nome) {
+		Cliente obj = repository.findByNome(nome);		
+		return obj;
+	}
+	
+	public Cliente findByRegistro(String registro){
+		Cliente obj = repository.findByNome(registro);		
+		return obj;
+	}
+	
+	public Cliente findByEmail(String email){
+		Cliente obj = repository.findByNome(email);		
+		return obj;
 	}
 	
 	

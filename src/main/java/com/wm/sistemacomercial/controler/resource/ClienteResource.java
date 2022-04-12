@@ -30,10 +30,30 @@ public class ClienteResource {
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Cliente> findById(@PathVariable Long id){
 		Cliente obj = cliente.findById(id);
-		return ResponseEntity.ok().body(obj);
-		
-		
-		
+		return ResponseEntity.ok().body(obj);		
 	}
 
+	
+	@GetMapping(value="/nome/{nome}")
+	public ResponseEntity<Cliente> findByNome(@PathVariable String nome){
+		Cliente obj = cliente.findByNome(nome);
+		return ResponseEntity.ok().body(obj);		
+	}	
+	
+	
+	@GetMapping(value="/{registro}")
+	public ResponseEntity<Cliente> findByRegistro(@PathVariable String registro){
+		Cliente obj = cliente.findByNome(registro);
+		return ResponseEntity.ok().body(obj);		
+	}
+	
+	
+	@GetMapping(value="/{email}")
+	public ResponseEntity<Cliente> findByEmail(@PathVariable String email){
+		Cliente obj = cliente.findByNome(email);
+		return ResponseEntity.ok().body(obj);		
+	}
+	
+	
+	
 }
