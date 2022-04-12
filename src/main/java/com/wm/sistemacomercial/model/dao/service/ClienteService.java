@@ -24,18 +24,18 @@ public class ClienteService {
 		return obj.get();
 	}
 	
-	public Cliente findByNome(String nome) {
-		Cliente obj = repository.findByNome(nome);		
+	public List<Cliente> findByNomeContaining(String nome) {
+		List<Cliente> obj = repository.findByNomeContaining(nome);	
+		return  obj;
+	}
+	
+	public List<Cliente> findByRegistroContaining(String registro){
+		List<Cliente>  obj = repository.findByRegistroContaining(registro);
 		return obj;
 	}
 	
-	public Cliente findByRegistro(String registro){
-		Cliente obj = repository.findByNome(registro);		
-		return obj;
-	}
-	
-	public Cliente findByEmail(String email){
-		Cliente obj = repository.findByNome(email);		
+	public List<Cliente> findByEmailContaining(String email){
+		List<Cliente>  obj = repository.findByEmailContaining(email);	
 		return obj;
 	}
 	

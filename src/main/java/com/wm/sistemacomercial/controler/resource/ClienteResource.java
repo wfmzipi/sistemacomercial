@@ -35,22 +35,22 @@ public class ClienteResource {
 
 	
 	@GetMapping(value="/nome/{nome}")
-	public ResponseEntity<Cliente> findByNome(@PathVariable String nome){
-		Cliente obj = cliente.findByNome(nome);
+	public ResponseEntity<List<Cliente>> findByNome(@PathVariable String nome){
+		List<Cliente> obj = cliente.findByNomeContaining(nome);
 		return ResponseEntity.ok().body(obj);		
 	}	
 	
 	
-	@GetMapping(value="/{registro}")
-	public ResponseEntity<Cliente> findByRegistro(@PathVariable String registro){
-		Cliente obj = cliente.findByNome(registro);
+	@GetMapping(value="/registro/{registro}")
+	public ResponseEntity<List<Cliente>> findByRegistro(@PathVariable String registro){
+		List<Cliente> obj = cliente.findByRegistroContaining(registro);
 		return ResponseEntity.ok().body(obj);		
 	}
 	
 	
-	@GetMapping(value="/{email}")
-	public ResponseEntity<Cliente> findByEmail(@PathVariable String email){
-		Cliente obj = cliente.findByNome(email);
+	@GetMapping(value="/email/{email}")
+	public ResponseEntity<List<Cliente>> findByEmail(@PathVariable String email){
+		List<Cliente> obj = cliente.findByEmailContaining(email);
 		return ResponseEntity.ok().body(obj);		
 	}
 	
