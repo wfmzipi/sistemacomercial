@@ -29,37 +29,42 @@ public class Fornecedor implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_FORNECEDOR")
+	@Column(name = "id_fornecedor")
 	private Long idfornecedor;
 	
-	@Column(name = "NOME")
+	@Column(name = "nome")
 	private String Nome;
 
-	@Column(name = "REGISTRO")
+	@Column(name = "registro")
 	private String Registro;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "TIPO_REGISTRO")
+	@Column(name = "tipo_registro")
 	private ETipoRegistro TipoRegistro;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	private String Email;
 
-	@OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="ENDERECO_FORNECEDOR",
-              joinColumns={@JoinColumn(name="ID_FORNECEDOR",
-               referencedColumnName="ID_FORNECEDOR")},
-              inverseJoinColumns={@JoinColumn(name="ID_ENDERECO",
-               referencedColumnName="ID_ENDERECO")})
-    private List<Endereco> endereco;
+//	@OneToMany(cascade=CascadeType.ALL)
+//    @JoinTable(name="endereço_fornecedor",
+//              joinColumns={@JoinColumn(name="id_fornecedor",
+//               referencedColumnName="id_fornecedor")},
+//              inverseJoinColumns={@JoinColumn(name="id_endereco",
+//               referencedColumnName="id_endereco")})
+//    private List<Endereco> endereco;
 	
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="TELEFONE_FORNECEDOR",
-              joinColumns={@JoinColumn(name="ID_FORNECEDOR",
-               referencedColumnName="ID_FORNECEDOR")},
-              inverseJoinColumns={@JoinColumn(name="ID_TELEFONE",
-               referencedColumnName="ID_TELEFONE")})
-	private List<Telefone> telefone;
+	@OneToMany( mappedBy = "fornecedor")
+    private List<Telefone> telefone;
+	
+	
+	
+	//    @OneToMany(cascade=CascadeType.ALL)
+//    @JoinTable(name="Telefone_Fornecedor",
+//              joinColumns={@JoinColumn(name="id_fornecedor",
+//               referencedColumnName="id_fornecedor")},
+//              inverseJoinColumns={@JoinColumn(name="id_telefone",
+//               referencedColumnName="id_telefone")})
+//	private List<TelefoneFornecedor> telefone;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="PRODUTO_FORNECEDOR",
@@ -124,29 +129,6 @@ public class Fornecedor implements Serializable{
 
 	
 	
-	public List<Endereco> getEndereco() {
-		return endereco;
-	}
-
-
-
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
-	}
-
-
-
-	public List<Telefone> getTelefone() {
-		return telefone;
-	}
-
-
-
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
-	}
-
-
 
 	public List<Produto> getProduto() {
 		return produto;

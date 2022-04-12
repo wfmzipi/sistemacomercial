@@ -12,13 +12,13 @@ import com.wm.sistemacomercial.model.entities.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	
-	@Query(value = "SELECT u FROM Cliente u where u.nome like %:nome%")
+	@Query(value = "SELECT u FROM Cliente u where upper(u.nome) like concat('%',upper(:nome),'%')")
 	public List<Cliente> findByNomeContaining(@Param("nome") String nome);
 	
-	@Query(value = "SELECT u FROM Cliente u where u.registro like %:registro%")
-	public List<Cliente> findByRegistroContaining(@Param("registro") String registro);
+	@Query(value = "SELECT u FROM Cliente u where upper(u.registro) like concat('%',upper(:registro),'%')")
+	public List<Cliente> findByRegistroContainingIgnoreCase(@Param("registro") String registro);
 	
-	@Query(value = "SELECT u FROM Cliente u where u.email like %:email%")
-	public List<Cliente> findByEmailContaining(@Param("email") String email);
+	@Query(value = "SELECT u FROM Cliente u where upper(u.email) like concat('%',upper(:email),'%')")
+	public List<Cliente> findByEmailContainingIgnoreCase(@Param("email") String email);
 
 }

@@ -8,4 +8,5 @@ import com.wm.sistemacomercial.model.entities.Endereco;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
+	
 }

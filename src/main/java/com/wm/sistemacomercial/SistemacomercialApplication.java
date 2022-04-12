@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SistemacomercialApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SistemacomercialApplication.class, args);
-	}
+		SpringApplication.run(SistemacomercialApplication.class, args);}
  
 	
 

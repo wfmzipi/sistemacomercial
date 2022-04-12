@@ -43,14 +43,14 @@ public class ClienteResource {
 	
 	@GetMapping(value="/registro/{registro}")
 	public ResponseEntity<List<Cliente>> findByRegistro(@PathVariable String registro){
-		List<Cliente> obj = cliente.findByRegistroContaining(registro);
+		List<Cliente> obj = cliente.findByRegistroContainingIgnoreCase(registro);
 		return ResponseEntity.ok().body(obj);		
 	}
 	
 	
 	@GetMapping(value="/email/{email}")
 	public ResponseEntity<List<Cliente>> findByEmail(@PathVariable String email){
-		List<Cliente> obj = cliente.findByEmailContaining(email);
+		List<Cliente> obj = cliente.findByEmailContainingIgnoreCase(email);
 		return ResponseEntity.ok().body(obj);		
 	}
 	

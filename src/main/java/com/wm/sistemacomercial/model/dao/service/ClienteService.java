@@ -29,13 +29,13 @@ public class ClienteService {
 		return  obj;
 	}
 	
-	public List<Cliente> findByRegistroContaining(String registro){
-		List<Cliente>  obj = repository.findByRegistroContaining(registro);
+	public List<Cliente> findByRegistroContainingIgnoreCase(String registro){
+		List<Cliente>  obj = repository.findByRegistroContainingIgnoreCase(registro);
 		return obj;
 	}
 	
-	public List<Cliente> findByEmailContaining(String email){
-		List<Cliente>  obj = repository.findByEmailContaining(email);	
+	public List<Cliente> findByEmailContainingIgnoreCase(String email){
+		List<Cliente>  obj = repository.findByEmailContainingIgnoreCase(email);	
 		return obj;
 	}
 	

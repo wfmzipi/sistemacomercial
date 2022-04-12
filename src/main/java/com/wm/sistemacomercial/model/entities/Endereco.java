@@ -14,39 +14,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wm.sistemacomercial.model.entities.enums.ETipoEndereco;
 
 @Entity(name = "Endereco")
 public class Endereco implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_ENDERECO")
+	@Column(name = "id_endereco")
 	private Long idendereco;
 
-	@Column(name = "COMPLEMENTO")
+	@Column(name = "complemento")
 	private String complemento;
 
-	@Column(name = "NUMERO")
+	@Column(name = "numero")
 	private String numero;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "TIPO_ENDERECO")
+	@Column(name = "tipo_endereo")
 	private ETipoEndereco tipoendereo;
 
 	@OneToOne
 	@JoinColumn(name="CEP")
 	private CodigoPostal cep;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "ENDERECO_CLIENTE", joinColumns = {
-			@JoinColumn(name = "ID_ENDERECO", referencedColumnName = "ID_ENDERECO") }, inverseJoinColumns = {
-					@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE") })
+    @JsonIgnore
+	@ManyToOne()
+	@JoinTable(name = "Endereco_Cliente", joinColumns = {
+			@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente") })
 	private Cliente cliente;
 
-	
+    @JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "ENDERECO_FORNECEDOR", joinColumns = {
 			@JoinColumn(name = "ID_ENDERECO", referencedColumnName = "ID_ENDERECO") }, inverseJoinColumns = {
@@ -62,6 +67,15 @@ public class Endereco implements Serializable {
 		this.numero = numero;
 		this.tipoendereo = tipoendereo;
 		this.cep = cep;
+	}
+
+	public Endereco(String complemento, String numero, ETipoEndereco tipoendereo, CodigoPostal cep, Cliente cliente) {
+		super();
+		this.complemento = complemento;
+		this.numero = numero;
+		this.tipoendereo = tipoendereo;
+		this.cep = cep;
+		this.cliente = cliente;
 	}
 
 	public Long getIdendereco() {
@@ -108,11 +122,6 @@ public class Endereco implements Serializable {
 		this.cep = cep;
 	}
 	
-	
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}

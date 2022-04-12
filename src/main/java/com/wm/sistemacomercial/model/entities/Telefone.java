@@ -4,45 +4,52 @@ package com.wm.sistemacomercial.model.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wm.sistemacomercial.model.entities.enums.ETipoTelefone;
 
 @Entity(name = "Telefone")
 public class Telefone implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_TELEFONE")
+	@Column(name = "id_telefone")
 	private Long idteelefone;
 
-	@Column(name = "TELEFONE")
+	@Column(name = "telefone")
 	private String telefone;
 
-	@Column(name = "TIPO_TELEFONE")
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_telefone")
 	private ETipoTelefone tipotelefone;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "TELEFONE_CLIENTE", joinColumns = {
-			@JoinColumn(name = "ID_TELEFONE", referencedColumnName = "ID_TELEFONE") }, inverseJoinColumns = {
-					@JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE") })
-	private Cliente cliente;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "TELEFONE_FORNECEDOR", joinColumns = {
-			@JoinColumn(name = "ID_TELEFONE", referencedColumnName = "ID_TELEFONE") }, inverseJoinColumns = {
-					@JoinColumn(name = "ID_FORNECEDOR", referencedColumnName = "ID_FORNECEDOR") })
+    @JsonIgnore
+	@ManyToOne()
+	@JoinTable(name = "Telefone_Fornecedor", 
+		joinColumns = {@JoinColumn(name = "id_telefone", referencedColumnName = "id_telefone") }, 
+					  inverseJoinColumns = {@JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor") })	
 	private Fornecedor fornecedor;
-	
-	
+
+    @JsonIgnore
+	@ManyToOne()
+	@JoinTable(name = "Telefone_Cliente", 
+		joinColumns = {@JoinColumn(name = "id_telefone", referencedColumnName = "id_telefone") }, 
+					  inverseJoinColumns = {@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente") })	
+    private Cliente cliente;    
+    
+		
 	public Telefone() {
 	};
 
@@ -51,9 +58,10 @@ public class Telefone implements Serializable{
 		this.tipotelefone = tipoTelefone;
 	}
 
-	public Telefone(String telefone, ETipoTelefone tipoTelefone, Cliente cliente) {
+	
+	public Telefone(String telefone, ETipoTelefone tipotelefone, Cliente cliente) {
 		this.telefone = telefone;
-		this.tipotelefone = tipoTelefone;
+		this.tipotelefone = tipotelefone;
 		this.cliente = cliente;
 	}
 
@@ -73,17 +81,9 @@ public class Telefone implements Serializable{
 		this.tipotelefone = tipoTelefone;
 	}
 
-	
-	
-	public Cliente getCliente() {
-		return cliente;
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	
-	
 
 	public ETipoTelefone getTipotelefone() {
 		return tipotelefone;
@@ -92,14 +92,7 @@ public class Telefone implements Serializable{
 	public void setTipotelefone(ETipoTelefone tipotelefone) {
 		this.tipotelefone = tipotelefone;
 	}
-
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
+	
 
 	@Override
 	public String toString() {
