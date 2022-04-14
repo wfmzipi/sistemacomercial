@@ -36,9 +36,9 @@ public class configuracao implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		CodigoPostal cep1 = new CodigoPostal("25515610");
-		CodigoPostal cep2 = new CodigoPostal("26520610");	
-						
+		CodigoPostal cep1 = codigopostalrepository.findByCEP("26515610");
+		CodigoPostal cep2 = codigopostalrepository.findByCEP("26520610");
+		
 		Cliente cli1 = new  Cliente("Wellington", "10619671742", ETipoRegistro.CPF, "wfmzipi@gmail.com");
 		Cliente cli2 = new Cliente("Gisele", "10482275431", ETipoRegistro.CPF, "gislef_rocha@yahoo.com");
 				
@@ -53,10 +53,9 @@ public class configuracao implements CommandLineRunner{
 		Endereco end4 = new Endereco("casa","158",ETipoEndereco.RESIDENCIAL,cep1,cli2);
 			
 		
-		codigopostalrepository.saveAll(Arrays.asList(cep1,cep2));
-		clienterepository.saveAll(Arrays.asList(cli1,cli2) );
-		telefonerepository.saveAll(Arrays.asList(tel1,tel2,tel3,tel4));
-		enderecorepository.saveAll(Arrays.asList(end1,end2,end3,end4));
+//		clienterepository.saveAll(Arrays.asList(cli1,cli2) );
+//		telefonerepository.saveAll(Arrays.asList(tel1,tel2,tel3,tel4));
+//		enderecorepository.saveAll(Arrays.asList(end1,end2,end3,end4));
 		
 		
 	}

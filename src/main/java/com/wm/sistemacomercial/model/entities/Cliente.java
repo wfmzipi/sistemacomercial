@@ -34,7 +34,7 @@ public class Cliente implements Serializable{
 	@Column(name = "registro")
 	private String registro;
 	
-	@Column(name = "tiporegistro")
+	@Column(name = "tipo_registro")
 	@Enumerated(EnumType.STRING)
 	private ETipoRegistro tiporegistro;
 	

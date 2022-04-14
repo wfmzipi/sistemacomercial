@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wm.sistemacomercial.model.dao.repository.ClienteRepository;
+import com.wm.sistemacomercial.model.dao.service.exception.ResourceNotFoundExcepetion;
 import com.wm.sistemacomercial.model.entities.Cliente;
 
 @Service
@@ -21,7 +22,7 @@ public class ClienteService {
 	
 	public Cliente findById(long id) {
 		Optional<Cliente> obj = repository.findById(id);		
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundExcepetion(id));
 	}
 	
 	public List<Cliente> findByNomeContaining(String nome) {

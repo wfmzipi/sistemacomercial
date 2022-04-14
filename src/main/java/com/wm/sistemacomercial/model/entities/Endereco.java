@@ -37,7 +37,7 @@ public class Endereco implements Serializable {
 	private String numero;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_endereo")
+	@Column(name = "tipo_endereco")
 	private ETipoEndereco tipoendereo;
 
 	@OneToOne

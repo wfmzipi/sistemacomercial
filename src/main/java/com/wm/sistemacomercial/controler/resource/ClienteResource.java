@@ -1,6 +1,7 @@
 package com.wm.sistemacomercial.controler.resource;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,6 @@ public class ClienteResource {
 	
 	@GetMapping
 	public ResponseEntity<List<Cliente>> findAll(){
-		
 		List<Cliente> list = cliente.findAll();		
 		return ResponseEntity.ok().body(list);
 	}
@@ -29,8 +29,9 @@ public class ClienteResource {
 	
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Cliente> findById(@PathVariable Long id){
-		Cliente obj = cliente.findById(id);
-		return ResponseEntity.ok().body(obj);		
+		Cliente obj = cliente.findById(id);		
+		return ResponseEntity.ok().body(obj);
+		
 	}
 
 	
