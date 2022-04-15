@@ -16,26 +16,20 @@ import com.wm.sistemacomercial.model.entities.CodigoPostal;
 @RequestMapping(value = "/codigopostal")
 public class CodigoPostalResource {
 
-	
 	@Autowired
 	private CodigoPostalService codigopostal;
-	
+
 	@GetMapping
-	public ResponseEntity<List<CodigoPostal>> findAll(){
-		
-		List<CodigoPostal> list = codigopostal.findAll();		
+	public ResponseEntity<List<CodigoPostal>> findAll() {
+		List<CodigoPostal> list = codigopostal.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-	
-	@GetMapping(value="/{cep}")
-	public ResponseEntity<CodigoPostal> findByCep(@PathVariable String cep){
+
+	@GetMapping(value = "/{cep}")
+	public ResponseEntity<CodigoPostal> findByCep(@PathVariable String cep) {
 		CodigoPostal obj = codigopostal.findByCep(cep);
 		return ResponseEntity.ok().body(obj);
-		
-		
-		
+
 	}
-	
-	
+
 }

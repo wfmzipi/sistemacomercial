@@ -3,10 +3,14 @@ package com.wm.sistemacomercial.controler.resource.exception;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+
 public class StandardError implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT-3")
 	private Instant timestamp;
 	private Integer status;
 	private String error;

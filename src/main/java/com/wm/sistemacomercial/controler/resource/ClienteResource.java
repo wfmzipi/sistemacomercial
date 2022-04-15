@@ -16,45 +16,39 @@ import com.wm.sistemacomercial.model.entities.Cliente;
 @RestController
 @RequestMapping(value = "/cliente")
 public class ClienteResource {
-	
+
 	@Autowired
 	private ClienteService cliente;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Cliente>> findAll(){
-		List<Cliente> list = cliente.findAll();		
+	public ResponseEntity<List<Cliente>> findAll() {
+		List<Cliente> list = cliente.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-	
-	@GetMapping(value="/{id}")
-	public ResponseEntity<Cliente> findById(@PathVariable Long id){
-		Cliente obj = cliente.findById(id);		
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Cliente> findById(@PathVariable Long id) {
+		Cliente obj = cliente.findById(id);
 		return ResponseEntity.ok().body(obj);
-		
+
 	}
 
-	
-	@GetMapping(value="/nome/{nome}")
-	public ResponseEntity<List<Cliente>> findByNome(@PathVariable String nome){
+	@GetMapping(value = "/nome/{nome}")
+	public ResponseEntity<List<Cliente>> findByNome(@PathVariable String nome) {
 		List<Cliente> obj = cliente.findByNomeContaining(nome);
-		return ResponseEntity.ok().body(obj);		
-	}	
-	
-	
-	@GetMapping(value="/registro/{registro}")
-	public ResponseEntity<List<Cliente>> findByRegistro(@PathVariable String registro){
+		return ResponseEntity.ok().body(obj);
+	}
+
+	@GetMapping(value = "/registro/{registro}")
+	public ResponseEntity<List<Cliente>> findByRegistro(@PathVariable String registro) {
 		List<Cliente> obj = cliente.findByRegistroContainingIgnoreCase(registro);
-		return ResponseEntity.ok().body(obj);		
+		return ResponseEntity.ok().body(obj);
 	}
-	
-	
-	@GetMapping(value="/email/{email}")
-	public ResponseEntity<List<Cliente>> findByEmail(@PathVariable String email){
+
+	@GetMapping(value = "/email/{email}")
+	public ResponseEntity<List<Cliente>> findByEmail(@PathVariable String email) {
 		List<Cliente> obj = cliente.findByEmailContainingIgnoreCase(email);
-		return ResponseEntity.ok().body(obj);		
+		return ResponseEntity.ok().body(obj);
 	}
-	
-	
-	
+
 }

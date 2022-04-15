@@ -1,7 +1,5 @@
 package com.wm.sistemacomercial.model.entities;
 
-
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -19,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wm.sistemacomercial.model.entities.enums.ETipoTelefone;
 
 @Entity(name = "Telefone")
-public class Telefone implements Serializable{
+public class Telefone implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,21 +33,20 @@ public class Telefone implements Serializable{
 	@Column(name = "tipo_telefone")
 	private ETipoTelefone tipotelefone;
 
-    @JsonIgnore
+	@JsonIgnore
 	@ManyToOne()
-	@JoinTable(name = "Telefone_Fornecedor", 
-		joinColumns = {@JoinColumn(name = "id_telefone", referencedColumnName = "id_telefone") }, 
-					  inverseJoinColumns = {@JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor") })	
+	@JoinTable(name = "Telefone_Fornecedor", joinColumns = {
+			@JoinColumn(name = "id_telefone", referencedColumnName = "id_telefone") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor") })
 	private Fornecedor fornecedor;
 
-    @JsonIgnore
+	@JsonIgnore
 	@ManyToOne()
-	@JoinTable(name = "Telefone_Cliente", 
-		joinColumns = {@JoinColumn(name = "id_telefone", referencedColumnName = "id_telefone") }, 
-					  inverseJoinColumns = {@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente") })	
-    private Cliente cliente;    
-    
-		
+	@JoinTable(name = "Telefone_Cliente", joinColumns = {
+			@JoinColumn(name = "id_telefone", referencedColumnName = "id_telefone") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente") })
+	private Cliente cliente;
+
 	public Telefone() {
 	};
 
@@ -58,11 +55,18 @@ public class Telefone implements Serializable{
 		this.tipotelefone = tipoTelefone;
 	}
 
-	
 	public Telefone(String telefone, ETipoTelefone tipotelefone, Cliente cliente) {
 		this.telefone = telefone;
 		this.tipotelefone = tipotelefone;
 		this.cliente = cliente;
+	}
+
+	
+	
+	public Telefone(String telefone, ETipoTelefone tipotelefone, Fornecedor fornecedor) {
+		this.telefone = telefone;
+		this.tipotelefone = tipotelefone;
+		this.fornecedor = fornecedor;
 	}
 
 	public String getTelefone() {
@@ -92,7 +96,6 @@ public class Telefone implements Serializable{
 	public void setTipotelefone(ETipoTelefone tipotelefone) {
 		this.tipotelefone = tipotelefone;
 	}
-	
 
 	@Override
 	public String toString() {
@@ -108,8 +111,6 @@ public class Telefone implements Serializable{
 		return result;
 	}
 
-	
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

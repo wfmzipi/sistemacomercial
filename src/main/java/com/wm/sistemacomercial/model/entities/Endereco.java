@@ -1,10 +1,7 @@
 package com.wm.sistemacomercial.model.entities;
 
-
-
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -41,24 +38,23 @@ public class Endereco implements Serializable {
 	private ETipoEndereco tipoendereo;
 
 	@OneToOne
-	@JoinColumn(name="CEP")
+	@JoinColumn(name = "CEP")
 	private CodigoPostal cep;
 
-    @JsonIgnore
+	@JsonIgnore
 	@ManyToOne()
 	@JoinTable(name = "Endereco_Cliente", joinColumns = {
 			@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco") }, inverseJoinColumns = {
 					@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente") })
 	private Cliente cliente;
 
-    @JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToOne()
 	@JoinTable(name = "ENDERECO_FORNECEDOR", joinColumns = {
 			@JoinColumn(name = "ID_ENDERECO", referencedColumnName = "ID_ENDERECO") }, inverseJoinColumns = {
 					@JoinColumn(name = "ID_FORNECEDOR", referencedColumnName = "ID_FORNECEDOR") })
 	private Fornecedor fornecedor;
-	
-	
+
 	public Endereco() {
 	};
 
@@ -76,6 +72,16 @@ public class Endereco implements Serializable {
 		this.tipoendereo = tipoendereo;
 		this.cep = cep;
 		this.cliente = cliente;
+	}
+
+	public Endereco(String complemento, String numero, ETipoEndereco tipoendereo, CodigoPostal cep,
+			Fornecedor fornecedor) {
+		super();
+		this.complemento = complemento;
+		this.numero = numero;
+		this.tipoendereo = tipoendereo;
+		this.cep = cep;
+		this.fornecedor = fornecedor;
 	}
 
 	public Long getIdendereco() {
@@ -121,7 +127,7 @@ public class Endereco implements Serializable {
 	public void setCep(CodigoPostal cep) {
 		this.cep = cep;
 	}
-	
+
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}

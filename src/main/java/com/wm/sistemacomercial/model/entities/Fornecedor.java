@@ -1,12 +1,8 @@
 package com.wm.sistemacomercial.model.entities;
 
-
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,36 +10,32 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.wm.sistemacomercial.model.entities.enums.ETipoRegistro;
 
-
 @Entity(name = "Fornecedor")
-public class Fornecedor implements Serializable{
+public class Fornecedor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_fornecedor")
 	private Long idfornecedor;
-	
+
 	@Column(name = "nome")
-	private String Nome;
+	private String nome;
 
 	@Column(name = "registro")
-	private String Registro;
-	
+	private String registro;
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_registro")
-	private ETipoRegistro TipoRegistro;
-	
+	private ETipoRegistro tiporegistro;
+
 	@Column(name = "email")
-	private String Email;
+	private String email;
 
 //	@OneToMany(cascade=CascadeType.ALL)
 //    @JoinTable(name="endereço_fornecedor",
@@ -51,111 +43,114 @@ public class Fornecedor implements Serializable{
 //               referencedColumnName="id_fornecedor")},
 //              inverseJoinColumns={@JoinColumn(name="id_endereco",
 //               referencedColumnName="id_endereco")})
-//    private List<Endereco> endereco;
 	
-	@OneToMany( mappedBy = "fornecedor")
-    private List<Telefone> telefone;
-	
-	
-	
-	//    @OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "fornecedor")
+	private List<Endereco> endereco;
+
+	@OneToMany(mappedBy = "fornecedor")
+	private List<Telefone> telefone;
+
+	// @OneToMany(cascade=CascadeType.ALL)
 //    @JoinTable(name="Telefone_Fornecedor",
 //              joinColumns={@JoinColumn(name="id_fornecedor",
 //               referencedColumnName="id_fornecedor")},
 //              inverseJoinColumns={@JoinColumn(name="id_telefone",
 //               referencedColumnName="id_telefone")})
-//	private List<TelefoneFornecedor> telefone;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="PRODUTO_FORNECEDOR",
-         joinColumns={@JoinColumn(name="ID_FORNECEDOR",
-               referencedColumnName="ID_FORNECEDOR")},
-         inverseJoinColumns={@JoinColumn(name="ID_PRODUTO",
-               referencedColumnName="ID_PRODUTO")})
-	private List<Produto> produto;
-    
-	
-	public Fornecedor() {};
-	
-	
 
-	public Fornecedor(String nome, String registro, ETipoRegistro tipoRegistro, String email) {
+//	@ManyToMany()
+//	@JoinTable(name = "PRODUTO_FORNECEDOR", joinColumns = {
+//			@JoinColumn(name = "ID_FORNECEDOR", referencedColumnName = "ID_FORNECEDOR") }, inverseJoinColumns = {
+//					@JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO") })
+//	private List<Produto> produto;
+
+	
+	
+	public Fornecedor() {
+	};
+
+	public Fornecedor(String nome, String registro, ETipoRegistro tiporegistro, String email) {
+		this.nome = nome;
+		this.registro = registro;
+		this.tiporegistro = tiporegistro;
+		this.email = email;
+	}
+	
+	public Fornecedor(String nome, String registro, ETipoRegistro tiporegistro, String email, List<Telefone> telefone) {
 		super();
-		Nome = nome;
-		Registro = registro;
-		TipoRegistro = tipoRegistro;
-		Email = email;
+		this.nome = nome;
+		this.registro = registro;
+		this.tiporegistro = tiporegistro;
+		this.email = email;
+		this.telefone = telefone;
 	}
 
 	public Long getIDFornecedor() {
 		return idfornecedor;
 	}
 
-	public String getNome() {
-		return Nome;
+	public String getnome() {
+		return nome;
 	}
 
-	public void setNome(String nome) {
-		Nome = nome;
+	public void setnome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getRegistro() {
-		return Registro;
+	public String getregistro() {
+		return registro;
 	}
 
-	public void setRegistro(String registro) {
-		Registro = registro;
+	public void setregistro(String registro) {
+		this.registro = registro;
 	}
 
-	public ETipoRegistro getTipoRegistro() {
-		return TipoRegistro;
+	public ETipoRegistro gettiporegistro() {
+		return tiporegistro;
 	}
 
-	public void setTipoRegistro(ETipoRegistro tipoRegistro) {
-		TipoRegistro = tipoRegistro;
+	public void settiporegistro(ETipoRegistro tiporegistro) {
+		this.tiporegistro = tiporegistro;
 	}
 
-	public String getEmail() {
-		return Email;
+	public String getemail() {
+		return email;
 	}
 
-	public void setEmail(String email) {
-		Email = email;
+	public void setemail(String email) {
+		this.email = email;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<Telefone> getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(List<Telefone> telefone) {
+		this.telefone = telefone;
 	}
 
 	
-	
-
-	public List<Produto> getProduto() {
-		return produto;
+	public List<Endereco> getEndereco() {
+		return endereco;
 	}
 
-
-
-	public void setProduto(ArrayList<Produto> produto) {
-		this.produto = produto;
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
 	}
-
-
 
 	@Override
 	public String toString() {
-		return "Forncedor [IDFornecedor=" + idfornecedor + ", Nome=" + Nome + ", Registro=" + Registro
-				+ ", TipoRegistro=" + TipoRegistro + ", Email=" + Email + "]";
+		return "Forncedor [IDFornecedor=" + idfornecedor + ", nome=" + nome + ", registro=" + registro
+				+ ", tiporegistro=" + tiporegistro + ", email=" + email + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Email == null) ? 0 : Email.hashCode());
-		result = prime * result + ((Nome == null) ? 0 : Nome.hashCode());
-		result = prime * result + ((Registro == null) ? 0 : Registro.hashCode());
-		result = prime * result + ((TipoRegistro == null) ? 0 : TipoRegistro.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((registro == null) ? 0 : registro.hashCode());
+		result = prime * result + ((tiporegistro == null) ? 0 : tiporegistro.hashCode());
 		return result;
 	}
 
@@ -168,28 +163,24 @@ public class Fornecedor implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Fornecedor other = (Fornecedor) obj;
-		if (Email == null) {
-			if (other.Email != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!Email.equals(other.Email))
+		} else if (!email.equals(other.email))
 			return false;
-		if (Nome == null) {
-			if (other.Nome != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!Nome.equals(other.Nome))
+		} else if (!nome.equals(other.nome))
 			return false;
-		if (Registro == null) {
-			if (other.Registro != null)
+		if (registro == null) {
+			if (other.registro != null)
 				return false;
-		} else if (!Registro.equals(other.Registro))
+		} else if (!registro.equals(other.registro))
 			return false;
-		if (TipoRegistro != other.TipoRegistro)
+		if (tiporegistro != other.tiporegistro)
 			return false;
 		return true;
 	}
 
-	
-	
-	
-	
 }
