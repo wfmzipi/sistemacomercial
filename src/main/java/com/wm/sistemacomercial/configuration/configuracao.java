@@ -8,13 +8,17 @@ import org.springframework.context.annotation.Configuration;
 
 import com.wm.sistemacomercial.model.dao.repository.ClienteRepository;
 import com.wm.sistemacomercial.model.dao.repository.EnderecoRepository;
+import com.wm.sistemacomercial.model.dao.repository.FabricanteRepository;
 import com.wm.sistemacomercial.model.dao.repository.FornecedorRepository;
+import com.wm.sistemacomercial.model.dao.repository.ProdutoRepository;
 import com.wm.sistemacomercial.model.dao.repository.TelefoneRepository;
 import com.wm.sistemacomercial.model.dao.service.CodigoPostalService;
 import com.wm.sistemacomercial.model.entities.Cliente;
 import com.wm.sistemacomercial.model.entities.CodigoPostal;
 import com.wm.sistemacomercial.model.entities.Endereco;
+import com.wm.sistemacomercial.model.entities.Fabricante;
 import com.wm.sistemacomercial.model.entities.Fornecedor;
+import com.wm.sistemacomercial.model.entities.Produto;
 import com.wm.sistemacomercial.model.entities.Telefone;
 import com.wm.sistemacomercial.model.entities.enums.ETipoEndereco;
 import com.wm.sistemacomercial.model.entities.enums.ETipoRegistro;
@@ -38,6 +42,11 @@ public class configuracao implements CommandLineRunner{
 	@Autowired
 	private FornecedorRepository fornecedorrepository;
 	
+	@Autowired
+	private ProdutoRepository produtorepository;	
+	
+	@Autowired
+	private FabricanteRepository fabricanterepository;	
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -80,6 +89,18 @@ public class configuracao implements CommandLineRunner{
 		fornecedorrepository.saveAll(Arrays.asList(for1,for2,for3,for4));
 		telefonerepository.saveAll(Arrays.asList(telfor1,telfor2,telfor3,telfor4));
 		enderecorepository.saveAll(Arrays.asList(endfor1,endfor2,endfor3,endfor4));
+
+		Fabricante fab1 = new Fabricante("Fabricante A");
+		Fabricante fab2 = new Fabricante("Fabricante b");
+		
+		Produto prod1 = new Produto("Cabo 10", 10, 1.00, 10.0, 1.50, Arrays.asList(for1,for2),Arrays.asList(fab1));
+		Produto prod2 = new Produto("Bomba 1cv", 10, 254.00, 10.0, 290.0, Arrays.asList(for3,for4),Arrays.asList(fab1));
+		
+		
+		fabricanterepository.saveAll(Arrays.asList(fab1,fab2));			
+		produtorepository.saveAll(Arrays.asList(prod1,prod2));
+		
+
 		
 	}
 

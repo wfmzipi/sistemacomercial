@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.wm.sistemacomercial.model.entities.enums.ETipoRegistro;
@@ -37,34 +40,18 @@ public class Fornecedor implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-//	@OneToMany(cascade=CascadeType.ALL)
-//    @JoinTable(name="endereço_fornecedor",
-//              joinColumns={@JoinColumn(name="id_fornecedor",
-//               referencedColumnName="id_fornecedor")},
-//              inverseJoinColumns={@JoinColumn(name="id_endereco",
-//               referencedColumnName="id_endereco")})
-	
 	@OneToMany(mappedBy = "fornecedor")
 	private List<Endereco> endereco;
 
 	@OneToMany(mappedBy = "fornecedor")
 	private List<Telefone> telefone;
 
-	// @OneToMany(cascade=CascadeType.ALL)
-//    @JoinTable(name="Telefone_Fornecedor",
-//              joinColumns={@JoinColumn(name="id_fornecedor",
-//               referencedColumnName="id_fornecedor")},
-//              inverseJoinColumns={@JoinColumn(name="id_telefone",
-//               referencedColumnName="id_telefone")})
+	@ManyToMany()
+	@JoinTable(name = "PRODUTO_FORNECEDOR", joinColumns = {
+			@JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_produto", referencedColumnName = "id_produto") })
+	private List<Produto> produto;
 
-//	@ManyToMany()
-//	@JoinTable(name = "PRODUTO_FORNECEDOR", joinColumns = {
-//			@JoinColumn(name = "ID_FORNECEDOR", referencedColumnName = "ID_FORNECEDOR") }, inverseJoinColumns = {
-//					@JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO") })
-//	private List<Produto> produto;
-
-	
-	
 	public Fornecedor() {
 	};
 
@@ -74,7 +61,7 @@ public class Fornecedor implements Serializable {
 		this.tiporegistro = tiporegistro;
 		this.email = email;
 	}
-	
+
 	public Fornecedor(String nome, String registro, ETipoRegistro tiporegistro, String email, List<Telefone> telefone) {
 		super();
 		this.nome = nome;
@@ -128,13 +115,20 @@ public class Fornecedor implements Serializable {
 		this.telefone = telefone;
 	}
 
-	
 	public List<Endereco> getEndereco() {
 		return endereco;
 	}
 
 	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
+	}
+
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
 
 	@Override

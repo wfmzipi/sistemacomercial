@@ -1,7 +1,5 @@
 package com.wm.sistemacomercial.model.entities;
 
-
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,68 +12,69 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
- 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "Produto")
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PRODUTO")
-	private Long idproduto;     
+	@Column(name = "id_produto")
+	private Long idproduto;
 
-	@Column(name = "NOME")
+	@Column(name = "nome")
 	private String nome;
 
-	@Column(name = "QUANTIDADE")
+	@Column(name = "quantidade")
 	private int quantidade;
-	
-	@Column(name = "PRECO_COMPRA")
+
+	@Column(name = "preco_compra")
 	private Double precocompra;
-	
-	@Column(name = "MARGEM")
+
+	@Column(name = "margem")
 	private Double margem;
-	
-	@Column(name = "PRECO_VENDA")
+
+	@Column(name = "preco_venda")
 	private Double precovenda;
 
-	@ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="PRODUTO_FORNECEDOR",
-         joinColumns={@JoinColumn(name="ID_PRODUTO",
-               referencedColumnName="ID_PRODUTO")},
-         inverseJoinColumns={@JoinColumn(name="ID_FORNECEDOR",
-               referencedColumnName="ID_FORNECEDOR")})
+	@JsonIgnore
+	@ManyToMany()
+	@JoinTable(name = "PRODUTO_FORNECEDOR", joinColumns = {
+			@JoinColumn(name = "id_produto", referencedColumnName = "id_produto") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor") })
 	private List<Fornecedor> fornecedor;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="PRODUTO_FABRICANTE",
-         joinColumns={@JoinColumn(name="ID_PRODUTO",
-               referencedColumnName="ID_PRODUTO")},
-         inverseJoinColumns={@JoinColumn(name="ID_FABRICANTE",
-               referencedColumnName="ID_FABRICANTE")})
+
+	@JsonIgnore
+	@ManyToMany()
+	@JoinTable(name = "PRODUTO_FABRICANTE", joinColumns = {
+			@JoinColumn(name = "id_produto", referencedColumnName = "id_produto") }, inverseJoinColumns = {
+					@JoinColumn(name = "id_fabricante", referencedColumnName = "id_fabricante") })
 	private List<Fabricante> fabricante;
-	
-	
-	
-	public Produto() {};
-	
-	
-	public Produto(String nome, int quantidade, Double precoCompra, Double margem, Double precoVenda) {
+
+	public Produto() {
+	};
+
+	public Produto(String nome, int quantidade, Double precocompra, Double margem, Double precovenda) {
 		this.nome = nome;
 		this.quantidade = quantidade;
-		this.precocompra = precoCompra;
+		this.precocompra = precocompra;
 		this.margem = margem;
-		this.precovenda = precoVenda;
+		this.precovenda = precovenda;
 	}
 
-	public Long getIDProduto() {
-		return idproduto;
-	}
 
-	public void setIDProduto(Long iDProduto) {
-		this.idproduto = iDProduto;
+	public Produto(String nome, int quantidade, Double precocompra, Double margem, Double precovenda,
+			List<Fornecedor> fornecedor, List<Fabricante> fabricante) {
+		this.nome = nome;
+		this.quantidade = quantidade;
+		this.precocompra = precocompra;
+		this.margem = margem;
+		this.precovenda = precovenda;
+		this.fornecedor = fornecedor;
+		this.fabricante = fabricante;
 	}
 
 	public String getNome() {
@@ -86,7 +85,7 @@ public class Produto implements Serializable{
 		this.nome = nome;
 	}
 
-	public Number getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
@@ -94,12 +93,12 @@ public class Produto implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public Double getPrecoCompra() {
+	public Double getPrecocompra() {
 		return precocompra;
 	}
 
-	public void setPrecoCompra(Double precoCompra) {
-		this.precocompra = precoCompra;
+	public void setPrecocompra(Double precocompra) {
+		this.precocompra = precocompra;
 	}
 
 	public Double getMargem() {
@@ -110,65 +109,35 @@ public class Produto implements Serializable{
 		this.margem = margem;
 	}
 
-	public Double getPrecoVenda() {
-		return precovenda;
-	}
-
-	public void setPrecoVenda(Double precoVenda) {
-		this.precovenda = precoVenda;
-	}
-
-
-	
-	
-	public Double getPrecocompra() {
-		return precocompra;
-	}
-
-
-	public void setPrecocompra(Double precocompra) {
-		this.precocompra = precocompra;
-	}
-
-
 	public Double getPrecovenda() {
 		return precovenda;
 	}
-
 
 	public void setPrecovenda(Double precovenda) {
 		this.precovenda = precovenda;
 	}
 
-
 	public List<Fornecedor> getFornecedor() {
 		return fornecedor;
 	}
-
 
 	public void setFornecedor(List<Fornecedor> fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 
-	
-	
-
 	public List<Fabricante> getFabricante() {
 		return fabricante;
 	}
 
-
 	public void setFabricante(List<Fabricante> fabricante) {
 		this.fabricante = fabricante;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Produto [Nome=" + nome + ", Quantidade=" + quantidade + ", PrecoCompra=" + precocompra + ", Margem="
 				+ margem + ", PrecoVenda=" + precovenda + "]";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -177,7 +146,6 @@ public class Produto implements Serializable{
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -195,7 +163,5 @@ public class Produto implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
