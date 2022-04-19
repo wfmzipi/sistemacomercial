@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.wm.sistemacomercial.model.dao.repository.ClienteRepository;
 import com.wm.sistemacomercial.model.dao.repository.EnderecoRepository;
@@ -67,14 +68,14 @@ public class configuracao implements CommandLineRunner{
 		Endereco endcli3 = new Endereco("casa","105",ETipoEndereco.RESIDENCIAL,cep2,cli1);
 		Endereco endcli4 = new Endereco("casa","158",ETipoEndereco.RESIDENCIAL,cep1,cli2);
 			
-//		clienterepository.saveAll(Arrays.asList(cli1,cli2));
-//		telefonerepository.saveAll(Arrays.asList(telclie1,telclie2,telclie3,telclie4));	
-//		enderecorepository.saveAll(Arrays.asList(endcli1,endcli2,endcli3,endcli4));
+		clienterepository.saveAll(Arrays.asList(cli1,cli2));
+		telefonerepository.saveAll(Arrays.asList(telclie1,telclie2,telclie3,telclie4));	
+		enderecorepository.saveAll(Arrays.asList(endcli1,endcli2,endcli3,endcli4));
 		
 		Fornecedor for1 = new Fornecedor("Fornecedor A", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
-		Fornecedor for2 = new Fornecedor("Fornecedor A", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
-		Fornecedor for3 = new Fornecedor("Fornecedor A", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
-		Fornecedor for4 = new Fornecedor("Fornecedor A", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
+		Fornecedor for2 = new Fornecedor("Fornecedor B", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
+		Fornecedor for3 = new Fornecedor("Fornecedor C", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
+		Fornecedor for4 = new Fornecedor("Fornecedor D", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
 		
 		Telefone telfor1 = new Telefone("987430743", ETipoTelefone.CELULAR,for1);
 		Telefone telfor2 = new Telefone("9999999", ETipoTelefone.CELULAR,for2);
@@ -86,9 +87,9 @@ public class configuracao implements CommandLineRunner{
 		Endereco endfor3 = new Endereco("casa","105",ETipoEndereco.RESIDENCIAL,cep2,for3);
 		Endereco endfor4 = new Endereco("casa","158",ETipoEndereco.RESIDENCIAL,cep1,for4);
 		
-		fornecedorrepository.saveAll(Arrays.asList(for1,for2,for3,for4));
-		telefonerepository.saveAll(Arrays.asList(telfor1,telfor2,telfor3,telfor4));
-		enderecorepository.saveAll(Arrays.asList(endfor1,endfor2,endfor3,endfor4));
+//		fornecedorrepository.saveAll(Arrays.asList(for1,for2,for3,for4));
+//		telefonerepository.saveAll(Arrays.asList(telfor1,telfor2,telfor3,telfor4));
+//		enderecorepository.saveAll(Arrays.asList(endfor1,endfor2,endfor3,endfor4));
 
 		Fabricante fab1 = new Fabricante("Fabricante A");
 		Fabricante fab2 = new Fabricante("Fabricante b");
@@ -97,10 +98,10 @@ public class configuracao implements CommandLineRunner{
 		Produto prod2 = new Produto("Bomba 1cv", 10, 254.00, 10.0, 290.0, Arrays.asList(for3,for4),Arrays.asList(fab1));
 		
 		
-		fabricanterepository.saveAll(Arrays.asList(fab1,fab2));			
-		produtorepository.saveAll(Arrays.asList(prod1,prod2));
+//		fabricanterepository.saveAll(Arrays.asList(fab1,fab2));			
+//		produtorepository.saveAll(Arrays.asList(prod1,prod2));
 		
-
+        
 		
 	}
 

@@ -28,37 +28,37 @@ public class OrdemCompra implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_ORDEM_COMPRA", nullable = false)
-	private Long idordemcompra;
+	@Column(name = "id_ordem_compra", nullable = false)
+	private Long id_ordem_compra;
 	
-	@Column(name = "DATA_COMPRA")
+	@Column(name = "data_compra")
 	private Date dataCompra;
 	
-	@Column(name = "DATA_PAGAMENTO")
+	@Column(name = "data_pagamento")
 	private Date dataPagamento;
 	
-	@Column(name = "STATUS")
+	@Column(name = "status")
 	@Enumerated(EnumType.STRING)
 	private EEstatus status;
 	
-	@Column(name = "SUBTOTAL")
+	@Column(name = "subtotal")
 	private Double subtotal;
 	
-	@Column(name = "DESCONTO")
+	@Column(name = "desconto")
 	private Double desconto;
 	
-	@Column(name = "TOTAL")
+	@Column(name = "total")
 	private Double total;
 	
-	@Column(name = "FORMA_PAGAMENTO")
+	@Column(name = "forma_pagamento")
 	@Enumerated(EnumType.STRING)
 	private EFormaPagamento formaPagamento;
 	
 	@OneToOne
-	@JoinColumn(name="ID_FORNECEDOR")
+	@JoinColumn(name="id_fornecedor")
 	private Fornecedor fornecedor;
 
-	@OneToMany(mappedBy = "ordemCompra", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ordemCompra")
     private List<ItemOrdemCompra> itemOrdemCompra;
 	
 	
@@ -83,12 +83,12 @@ public class OrdemCompra implements Serializable{
 	
 	
 	public Long getIdordemcompra() {
-		return idordemcompra;
+		return id_ordem_compra;
 	}
 
 
 	public void setIdordemcompra(Long idordemcompra) {
-		this.idordemcompra = idordemcompra;
+		this.id_ordem_compra = idordemcompra;
 	}
 
 
@@ -97,22 +97,22 @@ public class OrdemCompra implements Serializable{
 	}
 
 
-	public Date getDataCompra() {
+	public Date getdataCompra() {
 		return dataCompra;
 	}
 
 
-	public void setDataCompra(Date dataCompra) {
+	public void setdataCompra(Date dataCompra) {
 		this.dataCompra = dataCompra;
 	}
 
 
-	public Date getDataPagamento() {
+	public Date getdataPagamento() {
 		return dataPagamento;
 	}
 
 
-	public void setDataPagamento(Date dataPagamento) {
+	public void setdataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 
@@ -189,7 +189,7 @@ public class OrdemCompra implements Serializable{
 
 	@Override
 	public String toString() {
-		return "OrdemCompra [idordemcompra=" + idordemcompra + ", dataCompra=" + dataCompra + ", dataPagamento="
+		return "OrdemCompra [idordemcompra=" + id_ordem_compra + ", dataCompra=" + dataCompra + ", dataPagamento="
 				+ dataPagamento + ", status=" + status + ", subtotal=" + subtotal + ", desconto=" + desconto
 				+ ", total=" + total + ", formaPagamento=" + formaPagamento + ", fornecedor=" + fornecedor
 				+ ", itemOrdemCompra=" + itemOrdemCompra + "]";
