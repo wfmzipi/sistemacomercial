@@ -1,16 +1,17 @@
 package com.wm.sistemacomercial.configuration;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.wm.sistemacomercial.model.dao.repository.ClienteRepository;
 import com.wm.sistemacomercial.model.dao.repository.EnderecoRepository;
 import com.wm.sistemacomercial.model.dao.repository.FabricanteRepository;
 import com.wm.sistemacomercial.model.dao.repository.FornecedorRepository;
+import com.wm.sistemacomercial.model.dao.repository.OrdemCompraRepository;
 import com.wm.sistemacomercial.model.dao.repository.ProdutoRepository;
 import com.wm.sistemacomercial.model.dao.repository.TelefoneRepository;
 import com.wm.sistemacomercial.model.dao.service.CodigoPostalService;
@@ -19,15 +20,18 @@ import com.wm.sistemacomercial.model.entities.CodigoPostal;
 import com.wm.sistemacomercial.model.entities.Endereco;
 import com.wm.sistemacomercial.model.entities.Fabricante;
 import com.wm.sistemacomercial.model.entities.Fornecedor;
+import com.wm.sistemacomercial.model.entities.OrdemCompra;
 import com.wm.sistemacomercial.model.entities.Produto;
 import com.wm.sistemacomercial.model.entities.Telefone;
+import com.wm.sistemacomercial.model.entities.enums.EEstatus;
+import com.wm.sistemacomercial.model.entities.enums.EFormaPagamento;
 import com.wm.sistemacomercial.model.entities.enums.ETipoEndereco;
 import com.wm.sistemacomercial.model.entities.enums.ETipoRegistro;
 import com.wm.sistemacomercial.model.entities.enums.ETipoTelefone;
 
 @Configuration
-public class configuracao implements CommandLineRunner{
-	
+public class configuracao implements CommandLineRunner {
+
 	@Autowired
 	private ClienteRepository clienterepository;
 
@@ -39,16 +43,19 @@ public class configuracao implements CommandLineRunner{
 
 	@Autowired
 	private EnderecoRepository enderecorepository;
-	
+
 	@Autowired
 	private FornecedorRepository fornecedorrepository;
-	
+
 	@Autowired
-	private ProdutoRepository produtorepository;	
-	
+	private ProdutoRepository produtorepository;
+
 	@Autowired
-	private FabricanteRepository fabricanterepository;	
-	
+	private FabricanteRepository fabricanterepository;
+
+	@Autowired
+	private OrdemCompraRepository ordemcomprarepository;
+
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -101,11 +108,12 @@ public class configuracao implements CommandLineRunner{
 //		fabricanterepository.saveAll(Arrays.asList(fab1,fab2));			
 //		produtorepository.saveAll(Arrays.asList(prod1,prod2));
 		
-        
+		Fornecedor odfor1 = (Fornecedor) fornecedorrepository.getById((long) 59);
+      //  OrdemCompra od1 = new OrdemCompra(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("01/05/2022 00:00:00"),new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("10/05/2022 00:00:00"),EEstatus.ABERTO,2220.0,10.0,2210.0,EFormaPagamento.CARTAO_CREDITO,odfor1);
+		
+		//ordemcomprarepository.save(od1);
+		
 		
 	}
 
-	
-	
-	
 }

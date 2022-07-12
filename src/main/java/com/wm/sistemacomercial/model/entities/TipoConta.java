@@ -13,6 +13,11 @@ import javax.persistence.Id;
 @Entity(name = "Tipo_Conta")
 public class TipoConta implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_TIPO_CONTA")

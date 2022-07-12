@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,7 +31,7 @@ public class OrdemCompra implements Serializable{
 	private Long id_ordem_compra;
 	
 	@Column(name = "data_compra")
-	private Date dataCompra;
+	private String dataCompra;
 	
 	@Column(name = "data_pagamento")
 	private Date dataPagamento;
@@ -65,7 +64,7 @@ public class OrdemCompra implements Serializable{
 	public OrdemCompra() {}
 
 
-	public OrdemCompra(Date dataCompra, Date dataPagamento, EEstatus status, Double subtotal, Double desconto,
+	public OrdemCompra(String dataCompra, Date dataPagamento, EEstatus status, Double subtotal, Double desconto,
 			Double total, EFormaPagamento formaPagamento, Fornecedor fornecedor,
 			List<ItemOrdemCompra> itemOrdemCompra) {
 		this.dataCompra = dataCompra;
@@ -79,7 +78,17 @@ public class OrdemCompra implements Serializable{
 		this.itemOrdemCompra = itemOrdemCompra;
 	}
 
-
+	public OrdemCompra(String dataCompra, Date dataPagamento, EEstatus status, Double subtotal, Double desconto,
+			Double total, EFormaPagamento formaPagamento, Fornecedor fornecedor) {
+		this.dataCompra = dataCompra;
+		this.dataPagamento = dataPagamento;
+		this.status = status;
+		this.subtotal = subtotal;
+		this.desconto = desconto;
+		this.total = total;
+		this.formaPagamento = formaPagamento;
+		this.fornecedor = fornecedor;
+	}
 	
 	
 	public Long getIdordemcompra() {
@@ -97,12 +106,12 @@ public class OrdemCompra implements Serializable{
 	}
 
 
-	public Date getdataCompra() {
+	public String getdataCompra() {
 		return dataCompra;
 	}
 
 
-	public void setdataCompra(Date dataCompra) {
+	public void setdataCompra(String dataCompra) {
 		this.dataCompra = dataCompra;
 	}
 

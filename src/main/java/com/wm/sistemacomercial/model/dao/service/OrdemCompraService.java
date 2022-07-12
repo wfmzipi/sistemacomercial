@@ -27,25 +27,25 @@ public class OrdemCompraService {
 		return obj.orElseThrow(() -> new ResourceNotFoundExcepetion(id));
 	}
 
-	public List<OrdemCompra> findByDataCompra(Date data_compra) {
-		Optional<List<OrdemCompra>> obj = repository.findByDataCompra(data_compra);	
-		return  obj.orElseThrow(() -> new ResourceNotFoundExcepetion(data_compra));
+	public List<OrdemCompra> findByDataCompra(String data) {
+		List<OrdemCompra> obj = repository.findByDataCompra(data);	
+		return  obj;
 	}	
 		
-//	public List<OrdemCompra> findByDataPagamento(Date data_pagamento){
-//		List<OrdemCompra> obj = repository.findByDataPagamento(data_pagamento);	
-//		return  obj;
-//	}		
-//	
-//	public List<OrdemCompra> findByStatus(@Param("status") String status){
-//		List<OrdemCompra> obj = repository.findByStatus(status);	
-//		return  obj;
-//	}
-//	
-//	public List<OrdemCompra> findByData_CompraBetween( Date DataInicial, Date DataFim){
-//		List<OrdemCompra> obj = repository.findByData_CompraBetween(DataInicial,DataFim);	
-//		return  obj;
-//	}	
+	public List<OrdemCompra> findByDataPagamento(Date data){
+		List<OrdemCompra> obj = repository.findByDataPagamento(data);	
+		return  obj;
+	}		
+	
+	public List<OrdemCompra> findByStatus(@Param("status") String status){
+		List<OrdemCompra> obj = repository.findByStatus(status);	
+		return  obj;
+	}
+	
+	public List<OrdemCompra> findByDataCompraBetween( Date DataInicial, Date DataFim){
+		List<OrdemCompra> obj = repository.findByDataCompraBetween(DataInicial,DataFim);	
+		return  obj;
+	}	
 	
 //	public List<OrdemCompra> findByData_PagamentoBetween( Date DataInicial, Date DataFim){
 //		List<OrdemCompra> obj = repository.findByData_PagamentoBetween(DataInicial,DataFim);	
