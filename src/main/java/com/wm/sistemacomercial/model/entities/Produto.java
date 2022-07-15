@@ -3,14 +3,18 @@ package com.wm.sistemacomercial.model.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,6 +42,7 @@ public class Produto implements Serializable {
 
 	@Column(name = "preco_venda")
 	private Double precovenda;
+	
 
 	@JsonIgnore
 	@ManyToMany()
@@ -47,12 +52,21 @@ public class Produto implements Serializable {
 	private List<Fornecedor> fornecedor;
 
 	@JsonIgnore
-	@ManyToMany()
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "PRODUTO_FABRICANTE", joinColumns = {
 			@JoinColumn(name = "id_produto", referencedColumnName = "id_produto") }, inverseJoinColumns = {
 					@JoinColumn(name = "id_fabricante", referencedColumnName = "id_fabricante") })
 	private List<Fabricante> fabricante;
 
+	@JsonIgnore
+	@OneToMany()
+	@JoinColumn(name = "ID_PRODUTO")
+	private List<OrdemVendaItem> ordemVendaItem;
+	
+	
+	
+	
+	
 	public Produto() {
 	};
 
@@ -74,6 +88,11 @@ public class Produto implements Serializable {
 		this.precovenda = precovenda;
 		this.fornecedor = fornecedor;
 		this.fabricante = fabricante;
+	}
+
+		
+	public Long getIdproduto() {
+		return idproduto;
 	}
 
 	public String getNome() {
@@ -132,10 +151,12 @@ public class Produto implements Serializable {
 		this.fabricante = fabricante;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Produto [Nome=" + nome + ", Quantidade=" + quantidade + ", PrecoCompra=" + precocompra + ", Margem="
-				+ margem + ", PrecoVenda=" + precovenda + "]";
+		return "Produto [idproduto=" + idproduto + ", nome=" + nome + ", quantidade=" + quantidade + ", precocompra="
+				+ precocompra + ", margem=" + margem + ", precovenda=" + precovenda ;
 	}
 
 	@Override
