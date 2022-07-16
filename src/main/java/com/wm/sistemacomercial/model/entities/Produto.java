@@ -3,7 +3,6 @@ package com.wm.sistemacomercial.model.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,6 +32,7 @@ public class Produto implements Serializable {
 	@Column(name = "quantidade")
 	private int quantidade;
 
+	@JsonIgnore
 	@Column(name = "preco_compra")
 	private Double precocompra;
 
@@ -52,7 +51,7 @@ public class Produto implements Serializable {
 	private List<Fornecedor> fornecedor;
 
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany()
 	@JoinTable(name = "PRODUTO_FABRICANTE", joinColumns = {
 			@JoinColumn(name = "id_produto", referencedColumnName = "id_produto") }, inverseJoinColumns = {
 					@JoinColumn(name = "id_fabricante", referencedColumnName = "id_fabricante") })
@@ -62,9 +61,6 @@ public class Produto implements Serializable {
 	@OneToMany()
 	@JoinColumn(name = "ID_PRODUTO")
 	private List<OrdemVendaItem> ordemVendaItem;
-	
-	
-	
 	
 	
 	public Produto() {

@@ -12,6 +12,7 @@ import com.wm.sistemacomercial.model.dao.repository.ClienteRepository;
 import com.wm.sistemacomercial.model.dao.repository.EnderecoRepository;
 import com.wm.sistemacomercial.model.dao.repository.FabricanteRepository;
 import com.wm.sistemacomercial.model.dao.repository.FornecedorRepository;
+import com.wm.sistemacomercial.model.dao.repository.OrdemCompraItemRepository;
 import com.wm.sistemacomercial.model.dao.repository.OrdemCompraRepository;
 import com.wm.sistemacomercial.model.dao.repository.OrdemVendaItemRepository;
 import com.wm.sistemacomercial.model.dao.repository.OrdemVendaRepository;
@@ -55,13 +56,79 @@ public class configuracao implements CommandLineRunner {
 	@Autowired
 	private OrdemVendaItemRepository ordemvendaitemrepository;
 
+	@Autowired
+	private OrdemCompraItemRepository ordemcompratemrepository;
 	
 	
 	@Override
 	public void run(String... args) throws Exception {
 		
+		//***********************************************************************************************************//
+		//===============================> Cadastro Produto
 		/*
+		Fornecedor for1 = new Fornecedor("Fornecedor A", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
+		Fornecedor for2 = new Fornecedor("Fornecedor B", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
+		fornecedorrepository.saveAll(Arrays.asList(for1,for2));
+		Fabricante fab1 = new Fabricante("Fabricante A");
+		Fabricante fab2 = new Fabricante("Fabricante b");
+		fabricanterepository.saveAll(Arrays.asList(fab1,fab2));	
+		
+		Produto prod1 = new Produto("Cabo 10", 10, 1.00, 10.0, 1.50, Arrays.asList(for1,for2),Arrays.asList(fab1));
+		Produto prod2 = new Produto("Bomba 1cv", 10, 254.00, 10.0, 290.0, Arrays.asList(for1,for2),Arrays.asList(fab1));
+		produtorepository.saveAll(Arrays.asList(prod1,prod2));
+		*/
+		
+		
+		
+		//***********************************************************************************************************//
+		//===============================> Cadastro Ordem Compra
+		/*
+        OrdemCompra od1 = new OrdemCompra(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("01/05/2022 00:00:00"),
+        		                          new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("10/05/2022 00:00:00"),
+        		                          EEstatus.ABERTO,
+        		                          2220.0,
+        		                          10.0,
+        		                          2210.0,
+        		                          EFormaPagamento.CARTAO_CREDITO,
+        		                          fornecedorrepository.getById((long) 11));
+        
+        OrdemCompraItem ordcomitem = new OrdemCompraItem(10, od1, produtorepository.getById((long) 13));
+        
+        //ordemcomprarepository.save(od1); --> cascade all
+        ordemcompratemrepository.save(ordcomitem);
+        */
+        //***********************************************************************************************************//
+
+        
+		//***********************************************************************************************************//
+		//===============================> Cadastro Ordem Venda
+		/*
+		OrdemVenda ord1 = new OrdemVenda(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("01/08/2022 00:00:00"),100.00, 10.00, 90.00, EFormaPagamento.DINEHIRO);
+		List<OrdemVendaItem> orveit1 = new ArrayList<>();
+		
+		orveit1.add(new OrdemVendaItem(10,ord1,produtorepository.getById((long) 13)));
+		orveit1.add(new OrdemVendaItem(90,ord1,produtorepository.getById((long) 14)));
+		orveit1.add(new OrdemVendaItem(50,ord1,produtorepository.getById((long) 15)));
+		orveit1.add(new OrdemVendaItem(60,ord1,produtorepository.getById((long) 16)));
+		orveit1.add(new OrdemVendaItem(140,ord1,produtorepository.getById((long) 13)));
+		orveit1.add(new OrdemVendaItem(13,ord1,produtorepository.getById((long) 14)));
+		orveit1.add(new OrdemVendaItem(11,ord1,produtorepository.getById((long) 15)));
+		orveit1.add(new OrdemVendaItem(12,ord1,produtorepository.getById((long) 16)));
+		orveit1.add(new OrdemVendaItem(15,ord1,produtorepository.getById((long) 14)));
+		orveit1.add(new OrdemVendaItem(17,ord1,produtorepository.getById((long) 15)));
 	
+		//ordemvendarepository.save(ord1); ---> cascade all
+	    ordemvendaitemrepository.saveAll(orveit1);		
+		
+		*/		
+	    //***********************************************************************************************************//
+		
+		
+		
+		
+        
+        
+		/*
 		Cliente cli1 = new  Cliente("Wellington", "10619671742", ETipoRegistro.CPF, "wfmzipi@gmail.com");
 		Cliente cli2 = new Cliente("Gisele", "10482275431", ETipoRegistro.CPF, "gislef_rocha@yahoo.com");
 				
@@ -101,41 +168,12 @@ public class configuracao implements CommandLineRunner {
 		enderecorepository.saveAll(Arrays.asList(endfor1,endfor2,endfor3,endfor4));
 		*/
 		
-		/*
-		Fornecedor for1 = new Fornecedor("Fornecedor A", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
-		Fornecedor for2 = new Fornecedor("Fornecedor B", "1354654313836", ETipoRegistro.CNPJ, "fornecedor@gmail.com");
-		fornecedorrepository.saveAll(Arrays.asList(for1,for2));
-		Fabricante fab1 = new Fabricante("Fabricante A");
-		Fabricante fab2 = new Fabricante("Fabricante b");
-		fabricanterepository.saveAll(Arrays.asList(fab1,fab2));	
-		
-		Produto prod1 = new Produto("Cabo 10", 10, 1.00, 10.0, 1.50, Arrays.asList(for1,for2),Arrays.asList(fab1));
-		Produto prod2 = new Produto("Bomba 1cv", 10, 254.00, 10.0, 290.0, Arrays.asList(for1,for2),Arrays.asList(fab1));
-		produtorepository.saveAll(Arrays.asList(prod1,prod2));
-		*/	
+			
 
-		/*
-		OrdemVenda ord1 = new OrdemVenda(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("01/08/2022 00:00:00"),100.00, 10.00, 90.00, EFormaPagamento.DINEHIRO);
-		List<OrdemVendaItem> orveit1 = new ArrayList<>();
-		
-		orveit1.add(new OrdemVendaItem(10,ord1,produtorepository.getById((long) 13)));
-		orveit1.add(new OrdemVendaItem(90,ord1,produtorepository.getById((long) 14)));
-		orveit1.add(new OrdemVendaItem(50,ord1,produtorepository.getById((long) 15)));
-		orveit1.add(new OrdemVendaItem(60,ord1,produtorepository.getById((long) 16)));
-		orveit1.add(new OrdemVendaItem(140,ord1,produtorepository.getById((long) 13)));
-		orveit1.add(new OrdemVendaItem(13,ord1,produtorepository.getById((long) 14)));
-		orveit1.add(new OrdemVendaItem(11,ord1,produtorepository.getById((long) 15)));
-		orveit1.add(new OrdemVendaItem(12,ord1,produtorepository.getById((long) 16)));
-		orveit1.add(new OrdemVendaItem(15,ord1,produtorepository.getById((long) 14)));
-		orveit1.add(new OrdemVendaItem(17,ord1,produtorepository.getById((long) 15)));
-	
-		ordemvendarepository.save(ord1);
-	    ordemvendaitemrepository.saveAll(orveit1);		
-		
-		*/
+
 		
 		
-      //  OrdemCompra od1 = new OrdemCompra(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("01/05/2022 00:00:00"),new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("10/05/2022 00:00:00"),EEstatus.ABERTO,2220.0,10.0,2210.0,EFormaPagamento.CARTAO_CREDITO,odfor1);
+
 
 		
 

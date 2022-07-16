@@ -2,8 +2,10 @@ package com.wm.sistemacomercial.model.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,11 +26,11 @@ public class OrdemVendaItem {
 	@Column(name = "QUANTIDADE")
 	private int Quantidade;
 
-	@ManyToOne()
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ID_VENDA")
 	private OrdemVenda ordemVenda;
 	
-	@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name = "ID_PRODUTO")
 	private Produto produto;
@@ -41,11 +43,11 @@ public class OrdemVendaItem {
 		this.produto = produto;
 	}
 
-	public Integer getQuantidade() {
+	public int getQuantidade() {
 		return Quantidade;
 	}
 
-	public void setQuantidade(Integer quantidade) {
+	public void setQuantidade(int quantidade) {
 		Quantidade = quantidade;
 	}
 
@@ -62,9 +64,14 @@ public class OrdemVendaItem {
 	}
 
 	public void setProduto(Produto produto) {
-		produto = produto;
+		this.produto = produto;
 	}
-	
+
+	public int getIdItemVenda() {
+		return IdItemVenda;
+	}
+
+
 	
 	
 }

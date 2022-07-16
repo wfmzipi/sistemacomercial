@@ -7,7 +7,6 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,20 +14,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity(name = "Item_Ordem_Compra")
-public class ItemOrdemCompra implements Serializable{
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity(name = "Ordem_Compra_Item")
+public class OrdemCompraItem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_ITEM_ORDEM_COMPRA", nullable = false)
-	private Long idItemOrdemCompra;
+	@Column(name = "ID_ORDEM_COMPRA_ITEM", nullable = false)
+	private Long idOrdemCompraItem;
 	
 	@Column(name = "QUANTIDADE")
 	private int quantidade;
 		
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ID_ORDEM_COMPRA")
 	private OrdemCompra ordemCompra;
 	
@@ -37,35 +39,19 @@ public class ItemOrdemCompra implements Serializable{
 	private Produto produto;
 	
 	
-	public ItemOrdemCompra() {}
+	public OrdemCompraItem() {}
 
-	public ItemOrdemCompra(Integer quantidade, Produto produto) {
-		this.quantidade = quantidade;
-		this.produto = produto;
-	}
-	
-
-	public ItemOrdemCompra(Integer quantidade, OrdemCompra ordemCompra, Produto produto) {
+	public OrdemCompraItem(Integer quantidade, OrdemCompra ordemCompra, Produto produto) {
 		this.quantidade = quantidade;
 		this.ordemCompra = ordemCompra;
 		this.produto = produto;
 	}
 
-	
-	
-	public Long getIdItemOrdemCompra() {
-		return idItemOrdemCompra;
-	}
-
-	public void setIdItemOrdemCompra(Long idItemOrdemCompra) {
-		this.idItemOrdemCompra = idItemOrdemCompra;
-	}
-
-	public Integer getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Integer quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -85,17 +71,15 @@ public class ItemOrdemCompra implements Serializable{
 		this.produto = produto;
 	}
 
-	@Override
-	public String toString() {
-		return "ItemOrdemCompra [idItemOrdemCompra=" + idItemOrdemCompra + ", quantidade=" + quantidade
-				+ ", ordemCompra=" + ordemCompra + ", produto=" + produto + "]";
+	public Long getIdOrdemCompraItem() {
+		return idOrdemCompraItem;
 	}
 
-
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "OrdemCompraItem [idOrdemCompraItem=" + idOrdemCompraItem + ", quantidade=" + quantidade
+				+ ", ordemCompra=" + ordemCompra + ", produto=" + produto + "]";
+	}
 	
 	
 }

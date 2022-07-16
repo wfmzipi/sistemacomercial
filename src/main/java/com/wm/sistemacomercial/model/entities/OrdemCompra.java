@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wm.sistemacomercial.model.entities.enums.EEstatus;
 import com.wm.sistemacomercial.model.entities.enums.EFormaPagamento;
 
@@ -30,9 +32,11 @@ public class OrdemCompra implements Serializable{
 	@Column(name = "id_ordem_compra", nullable = false)
 	private Long id_ordem_compra;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy'T'HH:mm:ss'Z'", timezone = "GMT" )
 	@Column(name = "data_compra")
-	private String dataCompra;
+	private Date dataCompra;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy'T'HH:mm:ss'Z'", timezone = "GMT" )
 	@Column(name = "data_pagamento")
 	private Date dataPagamento;
 	
@@ -53,20 +57,21 @@ public class OrdemCompra implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private EFormaPagamento formaPagamento;
 	
-	@OneToOne
+	@JsonIgnore
+	@OneToOne()
 	@JoinColumn(name="id_fornecedor")
 	private Fornecedor fornecedor;
 
 	@OneToMany(mappedBy = "ordemCompra")
-    private List<ItemOrdemCompra> itemOrdemCompra;
+    private List<OrdemCompraItem> itemOrdemCompra;
 	
 	
 	public OrdemCompra() {}
 
 
-	public OrdemCompra(String dataCompra, Date dataPagamento, EEstatus status, Double subtotal, Double desconto,
+	public OrdemCompra(Date dataCompra, Date dataPagamento, EEstatus status, Double subtotal, Double desconto,
 			Double total, EFormaPagamento formaPagamento, Fornecedor fornecedor,
-			List<ItemOrdemCompra> itemOrdemCompra) {
+			List<OrdemCompraItem> itemOrdemCompra) {
 		this.dataCompra = dataCompra;
 		this.dataPagamento = dataPagamento;
 		this.status = status;
@@ -78,7 +83,7 @@ public class OrdemCompra implements Serializable{
 		this.itemOrdemCompra = itemOrdemCompra;
 	}
 
-	public OrdemCompra(String dataCompra, Date dataPagamento, EEstatus status, Double subtotal, Double desconto,
+	public OrdemCompra(Date dataCompra, Date dataPagamento, EEstatus status, Double subtotal, Double desconto,
 			Double total, EFormaPagamento formaPagamento, Fornecedor fornecedor) {
 		this.dataCompra = dataCompra;
 		this.dataPagamento = dataPagamento;
@@ -90,38 +95,32 @@ public class OrdemCompra implements Serializable{
 		this.fornecedor = fornecedor;
 	}
 	
-	
-	public Long getIdordemcompra() {
+	public Long getId_ordem_compra() {
 		return id_ordem_compra;
 	}
 
 
-	public void setIdordemcompra(Long idordemcompra) {
-		this.id_ordem_compra = idordemcompra;
+	public void setId_ordem_compra(Long id_ordem_compra) {
+		this.id_ordem_compra = id_ordem_compra;
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-	public String getdataCompra() {
+	public Date getDataCompra() {
 		return dataCompra;
 	}
 
 
-	public void setdataCompra(String dataCompra) {
+	public void setDataCompra(Date dataCompra) {
 		this.dataCompra = dataCompra;
 	}
 
 
-	public Date getdataPagamento() {
+	public Date getDataPagamento() {
 		return dataPagamento;
 	}
 
 
-	public void setdataPagamento(Date dataPagamento) {
+	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 
@@ -186,12 +185,12 @@ public class OrdemCompra implements Serializable{
 	}
 
 
-	public List<ItemOrdemCompra> getItemOrdemCompra() {
+	public List<OrdemCompraItem> getItemOrdemCompra() {
 		return itemOrdemCompra;
 	}
 
 
-	public void setItemOrdemCompra(List<ItemOrdemCompra> itemOrdemCompra) {
+	public void setItemOrdemCompra(List<OrdemCompraItem> itemOrdemCompra) {
 		this.itemOrdemCompra = itemOrdemCompra;
 	}
 

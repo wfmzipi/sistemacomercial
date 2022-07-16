@@ -8,14 +8,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wm.sistemacomercial.model.entities.enums.EFormaPagamento;
 
 @Entity(name = "Ordem_venda")
@@ -28,6 +26,7 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "ID_VENDA")
 	private Long IdVenda;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy'T'HH:mm:ss'Z'", timezone = "GMT" )
 	@Column(name = "DATA_VENDA")
 	private Date dataVenda;
 	
@@ -43,8 +42,7 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "FORMA_PAGAMENTO")
 	private EFormaPagamento FormaPagament;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ID_VENDA", referencedColumnName = "ID_VENDA")
+	@OneToMany(mappedBy = "ordemVenda")
 	private List<OrdemVendaItem> ordemVendaItem;
 	
 	
@@ -61,20 +59,12 @@ private static final long serialVersionUID = 1L;
 		
 	}
 
-	public Long getIdVenda() {
-		return IdVenda;
-	}
-
-	public void setIdVenda(Long idVenda) {
-		IdVenda = idVenda;
-	}
-
 	public Date getDataVenda() {
 		return dataVenda;
 	}
 
 	public void setDataVenda(Date dataVenda) {
-		dataVenda = dataVenda;
+		this.dataVenda = dataVenda;
 	}
 
 	public Double getSubTotal() {
@@ -82,7 +72,7 @@ private static final long serialVersionUID = 1L;
 	}
 
 	public void setSubTotal(Double subTotal) {
-		subTotal = subTotal;
+		this.subTotal = subTotal;
 	}
 
 	public Double getDesconto() {
@@ -108,6 +98,19 @@ private static final long serialVersionUID = 1L;
 	public void setFormaPagament(EFormaPagamento formaPagament) {
 		FormaPagament = formaPagament;
 	}
+
+	public List<OrdemVendaItem> getOrdemVendaItem() {
+		return ordemVendaItem;
+	}
+
+	public void setOrdemVendaItem(List<OrdemVendaItem> ordemVendaItem) {
+		this.ordemVendaItem = ordemVendaItem;
+	}
+
+	public Long getIdVenda() {
+		return IdVenda;
+	}
+
 
 
 	

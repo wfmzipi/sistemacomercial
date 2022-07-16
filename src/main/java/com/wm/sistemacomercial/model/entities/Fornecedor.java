@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,6 +53,7 @@ public class Fornecedor implements Serializable {
 					@JoinColumn(name = "id_produto", referencedColumnName = "id_produto") })
 	private List<Produto> produto;
 
+	
 	public Fornecedor() {
 	};
 
@@ -71,7 +73,7 @@ public class Fornecedor implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public Long getIDFornecedor() {
+	public Long getIdFornecedor() {
 		return idfornecedor;
 	}
 
@@ -133,7 +135,7 @@ public class Fornecedor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Forncedor [IDFornecedor=" + idfornecedor + ", nome=" + nome + ", registro=" + registro
+		return "Forncedor [IdFornecedor=" + idfornecedor + ", nome=" + nome + ", registro=" + registro
 				+ ", tiporegistro=" + tiporegistro + ", email=" + email + "]";
 	}
 
